@@ -1,0 +1,1 @@
+package protocols;/** * Created by Bernd on 19.12.2015. */public class Message {    public static final String CHARSET = "US-ASCII";}

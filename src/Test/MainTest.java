@@ -1,0 +1,1 @@
+package Test;/** * Created by Bernd on 29.11.2015. */public class MainTest {}
