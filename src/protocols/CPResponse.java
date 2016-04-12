@@ -8,17 +8,23 @@ import java.io.IOException;
  */
 public class CPResponse {
 
+    public static final String GLOBAL_LAST = "g";
+    public static final String LOCAL_LAST = "l";
+    public static final String NOT_LAST= "n";
+
     int requestId;
     int requestPart;
     int responsePart;
-    boolean isLast;
+    String isLast;
     byte[] content;
+    private int duration;
 
-    public CPResponse(int requestId, int requestPart, int responsePart, boolean isLast, byte[] content) {
+    public CPResponse(int requestId, int requestPart, int responsePart, String isLast, int duration, byte[] content) {
         this.requestId = requestId;
         this.requestPart = requestPart;
         this.responsePart = responsePart;
         this.isLast = isLast;
+        this.duration = duration;
         this.content = content;
     }
 
@@ -36,7 +42,9 @@ public class CPResponse {
             out.write(32);  //Space
             out.write(("" + responsePart).getBytes("US-ASCII"));
             out.write(32);  //Space
-            out.write((isLast ? "t" : "f").getBytes("US-ASCII"));
+            out.write((isLast).getBytes("US-ASCII"));
+            out.write(32);  //Space
+            out.write(("" + duration).getBytes("US-ASCII"));
             out.write(13);  //\r
             out.write(10);  //\n
             out.write(content);
